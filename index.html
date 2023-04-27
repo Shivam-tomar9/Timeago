@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Time Ago</title>
+ 
+  
+</head>
+<body>
+<!--     
+<time class="timeago" datetime=""></time>
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="jquery.timeago.js"></script>
+      <script>
+        jQuery(document).ready(function() {
+  jQuery("time.timeago").timeago();
+});    -->
+<!-- <p>The event occurred <span id="time-ago"></span>.</p>
+    </script>
+    <script>
+        // Get the date/time of the event you want to display the time ago for
+const eventTime = new Date('2023-04-26T22:59:59');
+
+// Get the current date/time
+const currentTime = new Date('2023-04-26T14:59:59');
+
+// Calculate the difference between the two times in milliseconds
+const diffTime = Math.abs(currentTime - eventTime);
+
+// Convert the difference into a human-readable format
+const timeAgo = getTimeAgo(diffTime);
+
+// Display the time ago
+document.getElementById('time-ago').textContent = timeAgo;
+
+function getTimeAgo(diffTime) {
+  const minutes = Math.floor(diffTime / 60000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(months / 12);
+
+  if (years > 0) {
+    return years === 1 ? '1 year ago' : years + ' years ago';
+  } else if (months > 0) {
+    return months === 1 ? '1 month ago' : months + ' months ago';
+  } else if (days > 0) {
+    return days === 1 ? '1 day ago' : days + ' days ago';
+  } else if (hours > 0) {
+    return hours === 1 ? '1 hour ago' : hours + ' hours ago';
+  } else if (minutes > 0) {
+    return minutes === 1 ? '1 minute ago' : minutes + ' minutes ago';
+  } else {
+    return 'just now';
+  }
+}
+
+    </script> -->
+
+<div class="container">
+  <h1>Time Ago</h1>
+  <div class="col-md-4">
+<label for="event-time">Enter the event date/time:</label>
+<input type="datetime-local" class="form-control" id="event-time">
+
+<p>The event occurred <span id="time-ago">just now</span>.</p>
+</div>
+</div>
+
+<script>
+  // Get the input element for the event time
+  const eventTimeInput = document.getElementById('event-time');
+
+  // Add an event listener to the input element to update the time ago when the user changes the event time
+  eventTimeInput.addEventListener('change', updateTimeAgo);
+
+  // Call updateTimeAgo initially to set the initial time ago value
+  updateTimeAgo();
+
+  function updateTimeAgo() {
+    // Get the date/time of the event you want to display the time ago for
+    const eventTime = new Date(eventTimeInput.value);
+
+    // Get the current date/time
+    const currentTime = new Date();
+
+    // Calculate the difference between the two times in milliseconds
+    const diffTime = Math.abs(currentTime - eventTime);
+
+    // Convert the difference into a human-readable format
+    const timeAgo = getTimeAgo(diffTime);
+
+    // Display the time ago
+    document.getElementById('time-ago').textContent = timeAgo;
+  }
+
+  function getTimeAgo(diffTime) {
+    const minutes = Math.floor(diffTime / 60000);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+
+    if (years > 0) {
+      return years === 1 ? '1 year ago' : years + ' years ago';
+    } else if (months > 0) {
+      return months === 1 ? '1 month ago' : months + ' months ago';
+    } else if (days > 0) {
+      return days === 1 ? '1 day ago' : days + ' days ago';
+    } else if (hours > 0) {
+      return hours === 1 ? '1 hour ago' : hours + ' hours ago';
+    } else if (minutes > 0) {
+      return minutes === 1 ? '1 minute ago' : minutes + ' minutes ago';
+    } else {
+      return 'just now';
+    }
+  }
+</script>
+    </body>
+    </html>
+
