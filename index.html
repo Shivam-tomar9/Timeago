@@ -61,7 +61,7 @@ function getTimeAgo(diffTime) {
 
     </script> -->
 
-<div class="container">
+<!-- <div class="container">
   <h1>Time Ago</h1>
   <div class="col-md-4">
 <label for="event-time">Enter the event date/time:</label>
@@ -119,7 +119,48 @@ function getTimeAgo(diffTime) {
       return 'just now';
     }
   }
+</script> -->
+
+
+
+
+<div class="container">
+  <h1>Time Ago</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="event-time" class="form-label">Enter the event date/time:</label>
+      <input type="datetime-local" class="form-control" id="event-time">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p>The event occurred <span id="time-ago">just now</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Get the event time input element
+  const eventTimeInput = document.getElementById("event-time");
+
+  // Get the time ago element
+  const timeAgoElement = document.getElementById("time-ago");
+
+  // Update the time ago text every minute
+  setInterval(() => {
+    const eventTime = new Date(eventTimeInput.value).getTime();
+    const currentTime = new Date().getTime();
+    const diff = currentTime - eventTime;
+    const minutes = Math.floor(diff / 60000);
+    timeAgoElement.innerText = `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  }, 60000);
 </script>
+</body>
+</html>
     </body>
     </html>
 
