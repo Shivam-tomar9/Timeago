@@ -37,17 +37,49 @@
   // Get the time ago element
   const timeAgoElement = document.getElementById("time-ago");
 
-  // Update the time ago text every minute
-  setInterval(() => {
-    const eventTime = new Date(eventTimeInput.value).getTime();
-    const currentTime = new Date().getTime();
-    const diff = currentTime - eventTime;
+  // Function to update the time ago text
+  function updateTimeAgoText() {
+  const eventTime = new Date(eventTimeInput.value).getTime();
+  const currentTime = new Date().getTime();
+  const diff = currentTime - eventTime;
+  let timeAgoText;
+  if (diff < 0) {
+    timeAgoText = "in the future";
+  } else if (diff < 60000) {
+    timeAgoText = "just now";
+  } else if (diff < 3600000) {
     const minutes = Math.floor(diff / 60000);
-    timeAgoElement.innerText = `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
-  }, 60000);
+    timeAgoText = `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  } else if (diff < 86400000) {
+    const hours = Math.floor(diff / 3600000);
+    timeAgoText = `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  } else if (diff < 604800000) {
+    const days = Math.floor(diff / 86400000);
+    timeAgoText = `${days} day${days === 1 ? "" : "s"} ago`;
+  } else if (diff < 2592000000) {
+    const weeks = Math.floor(diff / 604800000);
+    timeAgoText = `${weeks} week${weeks === 1 ? "" : "s"} ago`;
+  } else if (diff < 31536000000) {
+    const months = Math.floor(diff / 2592000000);
+    timeAgoText = `${months} month${months === 1 ? "" : "s"} ago`;
+  } else {
+    const years = Math.floor(diff / 31536000000);
+    timeAgoText = `${years} year${years === 1 ? "" : "s"} ago`;
+  }
+  timeAgoElement.innerText = timeAgoText;
+}
+
+// Call the function to update the time ago text immediately
+updateTimeAgoText();
+
+// Update the time ago text every minute using setInterval
+setInterval(updateTimeAgoText, 60000);
+
+// Update the time ago text on input event of the event time input
+eventTimeInput.addEventListener("input", updateTimeAgoText);
 </script>
 </body>
 </html>
-    </body>
-    </html>
+    
+    
 
